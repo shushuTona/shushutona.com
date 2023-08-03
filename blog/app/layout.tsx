@@ -15,7 +15,7 @@ export default function RootLayout({
       <body className="min-h-screen grid grid-rows-[auto_1fr_auto]">
         <Header />
 
-        <main>
+        <main className='min-w-0'>
           <div className="main mx-auto p-4 w-full max-w-[1000px] h-full">
             {children}
           </div>

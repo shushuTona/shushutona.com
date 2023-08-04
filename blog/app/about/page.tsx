@@ -29,7 +29,7 @@ export default function About() {
             <h1>About</h1>
 
             <h2>職務経歴</h2>
-            <p>大学4年生の就職活動時にwebの勉強を始めて、以下の経歴で生きてきました。</p>
+            <p>大学4年生の就職活動時にWebアプリケーション開発の勉強を始めて、以下の経歴で生きてきました。</p>
 
             <dl className='my-8'>
                 {

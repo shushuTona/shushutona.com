@@ -82,4 +82,6 @@ const TagPage = async ( { params }: { params: { tag: string} } ) => {
     )
 }
 
+export const runtime = 'edge';
+
 export default TagPage

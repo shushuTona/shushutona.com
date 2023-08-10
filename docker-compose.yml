@@ -10,6 +10,7 @@ services:
       - .:/src
       - node-modules:/app/node_modules
     tty: true
+    init: true
 
 volumes:
     node-modules:

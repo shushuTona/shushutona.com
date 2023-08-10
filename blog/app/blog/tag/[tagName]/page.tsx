@@ -24,7 +24,7 @@ export async function generateMetadata( { params }: { params: { tagName: string 
 
 // articlesディレクトリ内のmdファイル一覧を取得して、Blogコンポーネントのparamsに渡す配列を生成する。
 export async function generateStaticParams() {
-    const filePathList = glob.sync( postDirectory + 'articles/**/*.md', { nodir: true } );
+    const filePathList = glob.sync( 'articles/**/*.md', { nodir: true } );
 
     let tagNameList: string[] = [];
     filePathList.forEach( ( filePath ) => {

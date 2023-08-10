@@ -1,0 +1,51 @@
+article>*:first-child,
+aside>*:first-child {
+    margin-top: 0 !important;
+}
+
+article>*:last-child,
+aside>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+ul:not([class]) {
+    margin: 1.5rem 0;
+}
+
+ul:not([class]) li {
+    padding: 0 0 0 1.5rem;
+    position: relative;
+}
+
+ul:not([class]) li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background-color: #019003;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.7rem;
+    left: 0.6rem;
+}
+
+ul:not([class]) li+li {
+    margin-top: 0.5rem;
+}
+
+ul:not([class]) li ul {
+    margin: 0.75rem 0 0;
+}
+
+pre {
+    margin: 30px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+code:not([class]) {
+    padding: 0.2em 0.4em;
+    background: #215aa012;
+    font-size: .85em;
+    border-radius: 4px;
+    vertical-align: 0.08em;
+}

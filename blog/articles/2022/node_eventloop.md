@@ -1,5 +1,5 @@
 ---
-title: "Node.js イベントループについて"
+title: "Node.jsイベントループについて"
 created_at: "2022/07/19"
 updated_at: "2022/07/19"
 tags: [Node.js]

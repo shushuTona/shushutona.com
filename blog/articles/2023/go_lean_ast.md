@@ -2,7 +2,7 @@
 title: "Go AST(抽象構文木)で何かやってみよう"
 created_at: "2023/02/12"
 updated_at: "2023/02/12"
-tags: [Go, 備忘録]
+tags: [go, 備忘録]
 publish: false
 ---
 

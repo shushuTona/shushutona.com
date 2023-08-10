@@ -2,7 +2,7 @@
 title: "AWS CDKでインフラ環境を作成してみよう"
 created_at: "2023/02/12"
 updated_at: "2023/02/12"
-tags: [AWS, CDK]
+tags: [aws, aws-cdk]
 publish: false
 ---
 

@@ -2,7 +2,7 @@
 title: "Go stringと[]byteについて"
 created_at: "2023/02/12"
 updated_at: "2023/02/12"
-tags: [Go, 備忘録]
+tags: [go, 備忘録]
 publish: false
 ---
 

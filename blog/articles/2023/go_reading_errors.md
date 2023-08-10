@@ -286,13 +286,13 @@ func Unwrap(err error) error {
 コメントアウトにもあるように、型アサーションとして指定しているメソッドは `Unwrap() error` であるため、 `Join` 関数で生成した `joinError` などの `Unwrap() []error` を実装したエラーに対しては、戻り値が `nil` になる。
 
 ```go
-	err1 := errors.New("error1")
-	err2 := errors.New("error2")
-	err3 := errors.New("error3")
-	joinErr := errors.Join(err1, err2, err3)
-	unwrappedErr3 := errors.Unwrap(joinErr)
-	fmt.Printf("%#v\n", unwrappedErr3)
-	// <nil>
+err1 := errors.New("error1")
+err2 := errors.New("error2")
+err3 := errors.New("error3")
+joinErr := errors.Join(err1, err2, err3)
+unwrappedErr3 := errors.Unwrap(joinErr)
+fmt.Printf("%#v\n", unwrappedErr3)
+// <nil>
 ```
 
 ### Is

@@ -8,16 +8,28 @@ aside>*:last-child {
     margin-bottom: 0 !important;
 }
 
-ul:not([class]) {
+ul:not([class]),
+ol:not([class]) {
     margin: 1rem 0;
 }
 
-ul:not([class]) li {
+ul:not([class]) li,
+ol:not([class]) li {
     padding: 0 0 0 1.5rem;
     position: relative;
 }
 
-ul:not([class]) li::before {
+ul:not([class]) li + li,
+ol:not([class]) li + li {
+    margin-top: 0.5rem;
+}
+
+ul:not([class]) > li > *,
+ol:not([class]) > li > * {
+    margin: 0.5rem 0 0;
+}
+
+ul:not([class]) > li::before {
     content: "";
     width: 4px;
     height: 4px;
@@ -28,12 +40,19 @@ ul:not([class]) li::before {
     left: 0.6rem;
 }
 
-ul:not([class]) li+li {
-    margin-top: 0.5rem;
+ol:not([class]) {
+    counter-reset: count 0;
 }
 
-ul:not([class]) li ul {
-    margin: 0.75rem 0 0;
+ol:not([class]) > li::before {
+    counter-increment: count;
+    content: counter(count);
+    display: block;
+    width: 1.5rem;
+    color: #019003;
+    text-align: center;
+    position: absolute;
+    left: 0;
 }
 
 pre {
@@ -62,4 +81,21 @@ pre code:not([class]) {
 pre code.hljs {
     padding: 1.5rem !important;
     font-size: 0.75rem;
+}
+
+blockquote {
+    margin: 1rem 0;
+}
+
+blockquote p {
+    margin: 0;
+    padding: 1rem;
+    font-size: .75rem;
+    border-radius: 10px;
+    border: 1px solid #666;
+    color: #666;
+}
+
+hr {
+    margin: 2.5rem 0;
 }

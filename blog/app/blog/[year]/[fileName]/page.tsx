@@ -103,6 +103,4 @@ const Blog = async ( { params }: { params: BlogParams } ) => {
     )
 }
 
-// export const runtime = 'edge';
-
 export default Blog

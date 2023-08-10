@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { glob } from 'glob';
 import { basename, dirname, join, parse } from 'path';
 import { readFileSync } from 'node:fs';

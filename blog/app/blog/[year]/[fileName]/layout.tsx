@@ -8,11 +8,11 @@ import { ArticleList } from '@/components/blog/ArticleList';
 
 import './blog.css';
 
-export default function BlogLayout( {
+const BlogLayout = ( {
     children,
 }: {
     children: React.ReactNode
-} ) {
+} ) =>{
     const filePathList = glob.sync( 'articles/**/*.md', { nodir: true } );
 
     const articleDataList = filePathList.map( ( filePath ) => {
@@ -47,3 +47,5 @@ export default function BlogLayout( {
         </>
     )
 }
+
+export default BlogLayout

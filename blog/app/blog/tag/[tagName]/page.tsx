@@ -16,9 +16,9 @@ const getArticleStringFromMDFile = ( year: string, fileName: string ): string =>
     return file;
 }
 
-export async function generateMetadata( { params }: { params: { tag: string } } ) {
+export async function generateMetadata( { params }: { params: { tagName: string } } ) {
     return {
-        title: params.tag + 'の記事一覧 | shushuTona.com',
+        title: params.tagName + 'の記事一覧 | shushuTona.com',
     }
 }
 
@@ -26,7 +26,7 @@ export async function generateMetadata( { params }: { params: { tag: string } } 
 export async function generateStaticParams() {
     const filePathList = glob.sync( postDirectory + 'articles/**/*.md', { nodir: true } );
 
-    let tagList: string[] = [];
+    let tagNameList: string[] = [];
     filePathList.forEach( ( filePath ) => {
         const parseFile = parse( filePath );
         const year = basename( dirname( filePath ) );
@@ -38,17 +38,17 @@ export async function generateStaticParams() {
         const { data, content } = matter( file );
         const articleMetaData = data as ArticleMetaData;
 
-        tagList = [...tagList, ...articleMetaData.tags];
+        tagNameList = [...tagNameList, ...articleMetaData.tags];
     } );
 
-    return Array.from( new Set( tagList ) ).map( ( tag ) => {
+    return Array.from( new Set( tagNameList ) ).map( ( tagName ) => {
         return {
-            tag,
+            tagName,
         }
     }) ;
 }
 
-const TagPage = async ( { params }: { params: { tag: string} } ) => {
+const TagPage = async ( { params }: { params: { tagName: string} } ) => {
     const filePathList = glob.sync( 'articles/**/*.md', { nodir: true } );
 
     const articleDataList = filePathList.map( ( filePath ) => {
@@ -69,11 +69,11 @@ const TagPage = async ( { params }: { params: { tag: string} } ) => {
     // 記事の公開日が新しい順に並び替える & publishがtrueの記事だけを一覧に表示する
     const publishedArticleDataList = articleDataList
                                                             .sort( ( articleDataA, articleDataB ) => articleDataB.date.getTime() - articleDataA.date.getTime() )
-                                                            .filter( ( articleData ) => articleData.articleMetaData.publish && articleData.articleMetaData.tags.includes( params.tag ) );
+                                                            .filter( ( articleData ) => articleData.articleMetaData.publish && articleData.articleMetaData.tags.includes( params.tagName ) );
 
     return (
         <>
-            <h1>{params.tag}の記事一覧</h1>
+            <h1>{params.tagName}の記事一覧</h1>
 
             <ArticleList articleList={publishedArticleDataList} headingLevel='2' classList='my-12' />
         </>

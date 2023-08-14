@@ -1,5 +1,5 @@
 ---
-title: "Go標準パッケージコードリーディング：syncパッケージ【Mutex編】"
+title: "Go標準パッケージコードリーディング：syncパッケージ【sync.Mutex編】"
 created_at: "2023/08/14"
 updated_at: "2023/08/14"
 tags: [go]
@@ -11,6 +11,8 @@ go言語のバージョン1.21がリリースされたので、これを機に�
 今回は `sync` パッケージの `mutex.go` のコードを読んでいきたいと思います。
 
 [go1.21.0/src/sync/mutex.go](https://github.com/golang/go/tree/go1.21.0/src/sync/mutex.go)
+
+---
 
 ## Mutexの基本的な使い方
 
@@ -67,6 +69,8 @@ sum : 9
 sum : 10
 ```
 
+---
+
 ## Locker interface
 
 `sync` パッケージには下記のような `Locker` インターフェースが定義されており、 `Mutex` はこのインターフェースを満たすように実装されている。
@@ -85,6 +89,8 @@ type Locker interface {
 - [go1.21.0/src/net/http/transport.go#L2562](https://github.com/golang/go/blob/go1.21.0/src/net/http/transport.go#L2562)
 - [go1.21.0/src/database/sql/sql.go#L661](https://github.com/golang/go/blob/go1.21.0/src/database/sql/sql.go#L661)
 
+---
+
 ## Mutex
 
 `Mutex` 構造体は下記のように定義されており、`state` と `sema` はそれぞれ初期値の `0` になる。
@@ -98,6 +104,8 @@ type Mutex struct {
 	sema  uint32
 }
 ```
+
+---
 
 ## Lock
 
@@ -140,7 +148,7 @@ mutexWaiterShift = 3
 `internal/race` パッケージは `-race` オプションを実行やビルド時に付与した際に `race.go` の内容を使用することになるため、通常実行時の `race.Enabled` の判定は `false` になる。
 （ `-race` オプション自体は、 [Data Race Detector](https://go.dev/doc/articles/race_detector) という、複数のgoroutinesが1つの同じ変数を操作する際の競合を検知する機能を有効にするオプション）
 
-## lockSlow
+### lockSlow
 
 既にロック状態の `Mutex` が再度 `Lock` メソッドを実行した際に `lockSlow` メソッドが実行される。
 
@@ -150,6 +158,8 @@ mutexWaiterShift = 3
 2. XXX
 3. XXX
 
+---
+
 ## Unlock
 
 `Unlock` メソッドは下記の流れになっているので、ロック状態からロック解除した場合2の処理で `m.state` の値が `0` になって処理が終了する。
@@ -158,7 +168,7 @@ mutexWaiterShift = 3
 2. `atomic.AddInt32` で `m.state` に `-mutexLocked` 加算（＝-1加算）する。
 3. 2の加算結果が `0` でなかった場合（＝ロック解除状態にならなかった場合）、`unlockSlow` メソッドを実行する。
 
-## unlockSlow
+### unlockSlow
 
 ロック解除状態で `Unlock` メソッドを実行した際などに、 `Unlock` メソッド内で `unlockSlow` メソッドが実行される。
 

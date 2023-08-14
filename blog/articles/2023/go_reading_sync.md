@@ -3,7 +3,7 @@ title: "Go標準パッケージコードリーディング：syncパッケージ
 created_at: "2023/08/14"
 updated_at: "2023/08/14"
 tags: [go]
-publish: true
+publish: false
 ---
 
 go言語のバージョン1.21がリリースされたので、これを機に標準パッケージのコードを色々読んでいこうと思います。
@@ -174,10 +174,18 @@ mutexWaiterShift = 3
 
 `unlockSlow` メソッドは下記の処理の流れになる。
 
-1. `(new+mutexLocked)&mutexLocked` の値が `0` の場合 `fatal` 関数を実行してfatal errorを発生させる。
-2. `new&mutexStarving` の値によって下記をそれぞれ実行する。
-    - `new&mutexStarving` の値が `0` の場合
+1. `(new + mutexLocked) & mutexLocked` の値が `0` の場合 `fatal` 関数を実行してfatal errorを発生させる。
+2. `new & mutexStarving` （＝ `new & 1` ）の値によって下記をそれぞれ実行する。
+    - `new & mutexStarving` の値が `0` の場合
         1. XXX
         2. XXX
         3. XXX
-    - `new&mutexStarving` の値が `0` でない場合、 `runtime_Semrelease` を実行する。
+    - `new & mutexStarving` の値が `0` でない場合、 `runtime_Semrelease` を実行する。
+
+`runtime_Semrelease` は 
+
+## まとめ
+
+`sync` パッケージの基本的な構造体である `Mutex` 関連のコードを読んでみたが、
+`Lock` と `UnLock` を基にしたシンプルな機能だった。
+また、パッケージ内定数に対してのビット演算を使った判定処理が多く、普段自分が書くコードには無い要素で新鮮だった。

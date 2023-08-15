@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import matter from 'gray-matter';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import remarkSlug from 'remark-slug';
 import remarkBreaks from 'remark-breaks';
@@ -38,6 +39,7 @@ const getArticleStringFromMDFile = ( year: string, fileName: string ): string =>
 const convertMarkdownToHTML = async ( markdown: string ) => {
     const file = await unified()
         .use( remarkParse )
+        .use( remarkGfm )
         .use( remarkSlug )
         .use( remarkBreaks )
         .use( remarkExternalLinks, {

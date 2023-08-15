@@ -99,3 +99,24 @@ blockquote p {
 hr {
     margin: 2.5rem 0;
 }
+
+table {
+    margin: 2rem 0;
+    border: 1px solid #333;
+}
+
+thead + tbody,
+tr +tr {
+    border-top: 1px solid #333;
+}
+
+th + th,
+th + td,
+td + td {
+    border-left: 1px solid #333;
+}
+
+th, td {
+    padding: .2rem .5rem;
+    min-width: 100px;
+}

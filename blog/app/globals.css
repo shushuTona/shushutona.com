@@ -55,6 +55,7 @@ h1:not([class]) {
 h2:not([class]) {
   margin: 2.5rem 0 1rem;
   font-size: 1.25rem;
+  font-weight: bold;
 }
 
 h3:not([class]) {
@@ -62,6 +63,11 @@ h3:not([class]) {
   font-size: 1rem;
   font-weight: bold;
   color: #350391;
+}
+
+h4:not([class]) {
+  margin: 2rem 0 1rem;
+  font-weight: normal;
 }
 
 a:not([class]) {

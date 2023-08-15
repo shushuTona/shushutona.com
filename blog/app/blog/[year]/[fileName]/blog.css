@@ -91,32 +91,33 @@ blockquote p {
     margin: 0;
     padding: 1rem;
     font-size: .75rem;
-    border-radius: 10px;
-    border: 1px solid #666;
+    border-left: 3px solid #666;
     color: #666;
+    background-color: #edf2f7;
 }
 
 hr {
     margin: 2.5rem 0;
+    border-color: #edf2f7;
 }
 
 table {
     margin: 2rem 0;
-    border: 1px solid #333;
-}
-
-thead + tbody,
-tr +tr {
-    border-top: 1px solid #333;
-}
-
-th + th,
-th + td,
-td + td {
-    border-left: 1px solid #333;
+    width: auto;
+    border-collapse: collapse;
+    font-size: .95em;
+    line-height: 1.5;
+    word-break: normal;
+    display: block;
+    overflow: auto;
 }
 
 th, td {
     padding: .2rem .5rem;
     min-width: 100px;
+    border: 1px solid #cfdce6;
+}
+
+thead th {
+    background-color: #edf2f7;
 }

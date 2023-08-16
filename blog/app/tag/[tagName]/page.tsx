@@ -38,7 +38,9 @@ export async function generateStaticParams() {
         const { data, content } = matter( file );
         const articleMetaData = data as ArticleMetaData;
 
-        tagNameList = [...tagNameList, ...articleMetaData.tags];
+        if (articleMetaData.publish) {
+            tagNameList = [...tagNameList, ...articleMetaData.tags];
+        }
     } );
 
     return Array.from( new Set( tagNameList ) ).map( ( tagName ) => {

@@ -70,7 +70,21 @@ export async function generateMetadata( { params }: { params: BlogParams } ) {
 export async function generateStaticParams() {
     const filePathList = glob.sync( postDirectory + '/**/*.md', { nodir: true } );
 
-    return filePathList.map( ( filePath ) => {
+    const filteredPathList = filePathList.filter( ( filePath ) => {
+        const parseFile = parse( filePath );
+        const year = basename( dirname( filePath ) );
+        const fileName = parseFile.name;
+
+        const file = getArticleStringFromMDFile( year, fileName );
+
+        // gray-matterでmarkdownのメタデータとコンテンツデータをそれぞれ取得する
+        const { data, content } = matter( file );
+        const articleMetaData = data as ArticleMetaData;
+
+        return articleMetaData.publish
+    } );
+
+    return filteredPathList.map( ( filePath ) => {
         const parseFile = parse( filePath );
         const year = basename( dirname( filePath ) );
         const fileName = parseFile.name;
@@ -91,7 +105,7 @@ const Blog = async ( { params }: { params: BlogParams } ) => {
 
     // markdownをHTML文字列に変換する
     const articleHTML = await convertMarkdownToHTML( content );
-    
+
     return (
         <>
             <h1>{articleMetaData.title}</h1>

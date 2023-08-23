@@ -444,7 +444,7 @@ fmt.Println(buf.String())
 
 ### encodeとdecodeの型指定
 
-[*FileSet.Read](https://github.com/golang/go/blob/go1.21.0/src/go/token/serialize.go#L22) と [*FileSet.Write](https://github.com/golang/go/blob/go1.21.0/src/go/token/serialize.go#L49) の処理を読んでいた時に、それぞれが引数にとる `encode` と `decode` は `serializedFileSet` 型になるが、何故型指定が `func(any) error` なのか不思議だった。
+[*FileSet.Read](https://github.com/golang/go/blob/go1.21.0/src/go/token/serialize.go#L22) と [*FileSet.Write](https://github.com/golang/go/blob/go1.21.0/src/go/token/serialize.go#L49) の処理を読んでいた時に、それぞれが引数にとる `encode` 関数と `decode` 関数は、処理の流れ的に引数として `serializedFileSet` 型を受け取ることになるが、何故型指定が `func(any) error` なのか不思議だった。
 
 ただ、下記のようなencodingパッケージでは、 今回の `Read` と `Write` メソッド同様に、引数の `encode` と `decode` は型指定が `func(any) error` になっていたので、Goという言語内で統一されている部分であり、これらencodingパッケージとの利用を示唆しているのかもと思った。
 

@@ -3,7 +3,7 @@ title: "Go標準パッケージコードリーディング：go/tokenパッケ�
 created_at: "2023/08/24"
 updated_at: "2023/08/24"
 tags: [go]
-publish: false
+publish: true
 ---
 
 go言語のバージョン1.21がリリースされたので、これを機に標準パッケージのコードを色々読んでいこうと思います。
